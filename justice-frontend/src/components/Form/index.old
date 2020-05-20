@@ -1,0 +1,175 @@
+import React, { Component } from 'react';
+
+import { Formik, Form } from 'formik';
+import { MenuItem, OutlinedInput, Select, InputLabel } from '@material-ui/core';
+
+import Column from '../Grid/Column';
+import Row from '../Grid/Row';
+import TxtField from '../TextField';
+import FormCtrl from '../FormControl';
+import DatePicker from '../DatePicker';
+import Button from '../Button';
+import history from '../../core/utils/history';
+
+class CustomForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  onsubmit = (values) => this.props.onSubmit(values);
+
+  render() {
+    const { initialValues, validations } = this.props;
+    return (
+      <div>
+        <Formik
+          initialValues={initialValues}
+          functionOnsubmit={this.props.onSubmit}
+          onSubmit={async (values, { setFieldError }) => {
+            try {
+              this.onSubmit(values);
+            } catch (errors) {
+              errors.forEach((err) => {
+                setFieldError(err.field, err.error);
+              });
+            }
+          }}
+          
+          validationSchema={validations}
+          component={this.form}
+        />
+      </div>
+    );
+  }
+
+  form = ({ handleSubmit, handleChange, handleBlur, values, errors }) => {
+    return (
+      <Form method="POST" onSubmit={handleSubmit}>
+        <Column>
+          <TxtField
+            name="customers"
+            id="customersText"
+            label="Customers"
+            variant="outlined"
+            required={true}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.customers}
+          />
+          <TxtField
+            id="folderText"
+            label="Folder"
+            variant="outlined"
+            name="folder"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.folder}
+          />
+          <TxtField
+            id="titleText"
+            label="Title"
+            variant="outlined"
+            name="title"
+            required={true}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.title}
+          />
+          <TxtField
+            id="tagText"
+            label="Tag"
+            variant="outlined"
+            name="tag"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.tag}
+          />
+          <TxtField
+            id="descriptionText"
+            placeholder="Case description"
+            multiline
+            rows={4}
+            rowsMax={6}
+            variant="outlined"
+            name="description"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.description}
+          />
+          <TxtField
+            id="commentsText"
+            placeholder="Comments"
+            multiline
+            rows={4}
+            rowsMax={6}
+            variant="outlined"
+            name="comments"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.comments}
+          />
+          <TxtField
+            id="responsibleText"
+            label="Responsible"
+            variant="outlined"
+            name="responsible"
+            required={true}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.responsible}
+          />
+
+          <FormCtrl variant="outlined" fullWidth={true}>
+            <InputLabel id="accessLabel">Access</InputLabel>
+            <Select
+              label="Access"
+              id="accessSelect"
+              input={<OutlinedInput labelWidth={100} />}
+              name="access"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.access}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={'PRIVATE'}>Private</MenuItem>
+              <MenuItem value={'PUBLIC'}>Public</MenuItem>
+            </Select>
+          </FormCtrl>
+
+          <DatePicker
+            label="Creation Date"
+            variant="outlined"
+            name="creationDate"
+            required={true}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.creationDate}
+          />
+        </Column>
+        <Row>
+          <Button type="submit" key="submit">
+            Save
+          </Button>
+          <Button
+            backgroundColor="#db4144"
+            colorText="#949494"
+            margin="3rem 1rem 1rem 1rem"
+            alignRight="auto"
+            onClick={() => history.push('/caseList')}
+          >
+            Cancel
+          </Button>
+        </Row>
+      </Form>
+    );
+  };
+}
+
+// const mapDispatchToProps = (dispatch) =>
+//   bindActionCreators({ create }, dispatch);
+
+export default CustomForm;
+// export default connect(null, mapDispatchToProps)(CustomForm);
