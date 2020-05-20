@@ -26,24 +26,41 @@ O sistema Justice foi desenvolvido para auxiliar na gestão de casos jurídicos.
 
 #### Backend
 Após baixar o projeto em uma pasta no computador e de ter instalado os pré-requisitos, abra um terminal e vá até a pasta raiz do projeto, em seguida execute:
-		`cd justice-backend`
+
+	`cd justice-backend`
+
 E logo após:
-    `mvn clean install`
+
+	`mvn clean install`
+
 O comando acima gerará o artefato para que suba a aplicação localmente, após a conclusão do processo acima, execute o comando abaixo para iniciar a aplicação do backend:
-    `java -jar target/justice-0.0.1-SNAPSHOT.jar`
+
+	`java -jar target/justice-0.0.1-SNAPSHOT.jar`
+	
 Se tudo ocorrer bem você já poderá acessar a documentação do backend feita com o swagger no endereço:
 
 http://localhost:8080/swagger-ui.html
 
+
 #### Frontend
 Após baixar o projeto em uma pasta no computador e de ter instalado os pré-requisitos, abra um terminal e vá até a pasta raiz do projeto, em seguida execute:
-		`cd justice-frontend`
+
+	`cd justice-frontend`
+
 E logo após:
-    `yarn`
+
+	`yarn`
+	
 E então faça o build do projeto:
-    `yarn build --profile`
+	
+	`yarn build --profile`
+	
 Agora precisamos configurar um servidor para rodar a aplicação e usaremos o [serve](https://www.npmjs.com/package/serve) para isso, executando os seguintes passos: 
-    `npm i serve`
+	
+	`npm i serve`
+	
 E após a instalação:
-    `serve build`
+
+	`serve build`
+    
 Pronto no terminal aparecerá um link do endereço local onde está rodando a aplicação do front end, é só copiar e acesso-lo no browser de sua preferência    
