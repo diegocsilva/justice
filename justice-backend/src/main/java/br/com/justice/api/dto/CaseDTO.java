@@ -40,7 +40,7 @@ public class CaseDTO implements Serializable {
   @NotNull(message = "{not.null.access.validation}")
   Access access;
 
-  @NotNull(message = "{not.null.creation.date.validation}")
+//  @NotNull(message = "{not.null.creation.date.validation}")
   Date creationDate;
 
   String formattedDate;
