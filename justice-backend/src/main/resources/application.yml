@@ -1,0 +1,21 @@
+spring:
+  cloud:
+    gcp:
+      datastore:
+        enabled: true
+logging:
+  level:
+    root: INFO
+
+springdoc:
+  api-docs:
+    resolve-schema-properties: true
+  version: '@project.version@'
+  title: Justice API
+  terms: http://swagger.io/terms/
+  license: Apache 2.0
+  url: http://springdoc.org
+  contact: https://www.linkedin.com/in/diego-candido-da-silva-2b3608ab/
+  name: Diego Cândido da Silva
+  email: diego.csilva@outlook.com
+
